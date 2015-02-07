@@ -14,12 +14,20 @@ import javax.portlet.RenderResponse;
 public class HelloPortlet extends GenericPortlet {
 
 	@Override
+	
 	protected void doView(RenderRequest request, RenderResponse response)
 			throws PortletException, IOException {
 		// TODO Auto-generated method stub
 //		super.doView(request, response);
 		response.setContentType("text/html");
-		response.getWriter().println("Hello Portlet body!!");
+		String user = request.getRemoteUser(); 
+		if (user != null) {
+			response.getWriter().println("Welcome " + user + "!");
+
+		} else {
+			response.getWriter().println("Log in to welcome you ;)");
+
+		}
 	}
 
 }
